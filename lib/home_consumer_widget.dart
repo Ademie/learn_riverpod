@@ -8,12 +8,14 @@ class HomeConsumerWidget extends ConsumerWidget {
   // Update value
   void onSubmit(WidgetRef ref, String value) {
     // ref.read(nameProvider.notifier).state = value;
-    ref.read(nameProvider.notifier).update((state) => value);
+    // ref.read(nameProvider.notifier).update((state) => value);
+    ref.read(userProvider.notifier).updateName(value);
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final name = ref.watch(nameProvider) ?? '';
+    // final name = ref.watch(nameProvider) ?? '';
+    final user = ref.watch(userProvider);
     return Scaffold(
       body: Center(
         child: Column(
@@ -22,7 +24,7 @@ class HomeConsumerWidget extends ConsumerWidget {
             TextField(
               onSubmitted: (value) => onSubmit(ref, value),
             ),
-            Text('My name is $name'),
+            Text('My name is ${user.name}'),
           ],
         ),
       ),
