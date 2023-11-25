@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_riverpod/main.dart';
+import 'package:learn_riverpod/oldmain.dart';
 
 class HomeConsumer extends ConsumerStatefulWidget {
   const HomeConsumer({super.key});
