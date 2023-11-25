@@ -15,7 +15,8 @@ class HomeConsumerWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // final name = ref.watch(nameProvider) ?? '';
-    final user = ref.watch(userProvider);
+    // final user = ref.watch(userProvider);
+    final user = ref.watch(userProvider.select((value) => value.name));
     return Scaffold(
       body: Center(
         child: Column(
@@ -24,7 +25,7 @@ class HomeConsumerWidget extends ConsumerWidget {
             TextField(
               onSubmitted: (value) => onSubmit(ref, value),
             ),
-            Text('My name is ${user.name}'),
+            Text('My name is $user'),
           ],
         ),
       ),
