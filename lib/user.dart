@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,7 +11,6 @@ class User {
     required this.name,
     required this.email,
   });
-
 
   User copyWith({
     String? name,
@@ -25,10 +24,10 @@ class User {
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
-  
+
     result.addAll({'name': name});
     result.addAll({'email': email});
-  
+
     return result;
   }
 
@@ -49,10 +48,8 @@ class User {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
-    return other is User &&
-      other.name == name &&
-      other.email == email;
+
+    return other is User && other.name == name && other.email == email;
   }
 
   @override
@@ -65,7 +62,15 @@ class UserNotifier extends StateNotifier<User> {
   void updateName(String n) {
     state = state.copyWith(name: n);
   }
-   void updateEmail(String n) {
+
+  void updateEmail(String n) {
     state = state.copyWith(email: n);
+  }
+}
+
+class UserRepository {
+  Future<User> fetchUserProvider() {
+    const url = 'https://jsonplaceholder.typicode.com/users/1';
+    return http.get(Uri.parse(url)).then((value) => User.fromJson(value.body));
   }
 }
