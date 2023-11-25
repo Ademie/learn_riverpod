@@ -11,6 +11,12 @@ final fetchUserProvider = FutureProvider((ref) {
   // const url = 'https://jsonplaceholder.typicode.com/users/1';
   // return http.get(Uri.parse(url)).then((value) => User.fromJson(value.body));
 });
+
+// async* here is used as a demo for fetching stream data...data from firebase
+// is example of a stream data
+final streamUserProvider = StreamProvider((ref) async* {
+  yield [1,2,3,4,5,6,7,8,9,0];
+});
 void main() {
   runApp(
     const ProviderScope(

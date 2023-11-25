@@ -7,11 +7,34 @@ class HomeFutureProvider extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(fetchUserProvider).when(
+  //   return ref.watch(fetchUserProvider).when(
+  //     data: (data) {
+  //       return Scaffold(
+  //         body: Center(
+  //           child: Text('My name is ${data.name}'),
+  //         ),
+  //       );
+  //     },
+  //     error: (error, stackTrace) {
+  //       print(error);
+  //       return const Scaffold(
+  //         body: Center(
+  //           child: Text('Error bitch'),
+  //         ),
+  //       );
+  //     },
+  //     loading: () {
+  //       return const Scaffold(
+  //         body: Center(child: CircularProgressIndicator()),
+  //       );
+  //     },
+  //   );
+  // }
+     return ref.watch(streamUserProvider).when(
       data: (data) {
         return Scaffold(
           body: Center(
-            child: Text('My name is ${data.name}'),
+            child: Text('My data is $data'),
           ),
         );
       },

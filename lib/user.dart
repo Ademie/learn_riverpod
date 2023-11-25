@@ -75,4 +75,6 @@ class UserRepository {
     const url = 'https://jsonplaceholder.typicode.com/users/1';
     return http.get(Uri.parse(url)).then((value) => User.fromJson(value.body));
   }
+
+  
 }
