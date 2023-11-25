@@ -68,8 +68,10 @@ class UserNotifier extends StateNotifier<User> {
   }
 }
 
+final userRepositoryProvider = Provider((ref) => UserRepository());
+
 class UserRepository {
-  Future<User> fetchUserProvider() {
+  Future<User> fetchUserData() {
     const url = 'https://jsonplaceholder.typicode.com/users/1';
     return http.get(Uri.parse(url)).then((value) => User.fromJson(value.body));
   }
